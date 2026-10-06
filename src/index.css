@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, 'SF Mono', Consolas, monospace;
+
+  --bg-app: #f7f6f3;
+  --bg-surface: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-hover: #f1efe9;
+  --text-primary: #1c1c1e;
+  --text-secondary: #6b6b6b;
+  --text-tertiary: #9a9a9a;
+  --border-subtle: #e7e5e0;
+  --accent: #9333ea;
+  --accent-soft: rgba(147, 51, 234, 0.12);
+  --highlight-yellow: #fef08a;
+  --highlight-green: #bbf7d0;
+  --highlight-blue: #bfdbfe;
+  --highlight-purple: #e9d5ff;
+  --highlight-orange: #fed7aa;
+  --highlight-pink: #fbcfe8;
+  --shadow-soft: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.dark {
+  --bg-app: #131315;
+  --bg-surface: #1a1a1d;
+  --bg-elevated: #202024;
+  --bg-hover: #26262b;
+  --text-primary: #ededec;
+  --text-secondary: #a3a3a8;
+  --text-tertiary: #6f6f76;
+  --border-subtle: #2a2a2e;
+  --accent: #c084fc;
+  --accent-soft: rgba(192, 132, 252, 0.15);
+  --highlight-yellow: #857d2e;
+  --highlight-green: #2e5d3a;
+  --highlight-blue: #2e4a6d;
+  --highlight-purple: #5c2e6d;
+  --highlight-orange: #6d4a2e;
+  --highlight-pink: #6d2e5c;
+  --shadow-soft: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.45);
+}
+
+* {
+  border-color: var(--border-subtle);
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--bg-app);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.reader-verse mark {
+  border-radius: 3px;
+  padding: 0 1px;
+}
+
+.ProseMirror {
+  outline: none;
+  min-height: 120px;
+}
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--text-tertiary);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* TipTap table / task list styles */
+.ProseMirror table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.75rem 0;
+}
+.ProseMirror th,
+.ProseMirror td {
+  border: 1px solid var(--border-subtle);
+  padding: 0.5rem;
+  min-width: 2rem;
+  text-align: left;
+}
+.ProseMirror th {
+  background-color: var(--bg-hover);
+  font-weight: 600;
+}
+.ProseMirror ul[data-type="taskList"] {
+  list-style: none;
+  padding-left: 0;
+}
+.ProseMirror ul[data-type="taskList"] li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+.ProseMirror ul[data-type="taskList"] li > label {
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+.ProseMirror blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1rem;
+  color: var(--text-secondary);
+  margin: 0.75rem 0;
+}
